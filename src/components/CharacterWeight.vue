@@ -1,14 +1,20 @@
 <script setup lang="ts">
-//should communicate with the parent for the weight/range given for the component
+
+//I don't really understand why this is needed, since I'm using the prop in the template, but...
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const props = defineProps<{
+   character: string
+}>()
+
+const model = defineModel();
+
+function update(e: Event) {
+   model.value = (e.target as HTMLInputElement).value
+}
 </script>
 
 <template>
-    <h1></h1>
-    <!-- 
-     have an image of the character
-     have either an input box or a slider or something to say how often the character should appear
-        0 = never allow rolling
-        to 
-        100 (?) or some max, but this number doesn't really matter, would just be for relative scaling vs the other characters
-     -->
+  <h1>{{ character }}</h1>
+  <img :src="`StS2_${character}.webp`" />
+  <input type="number" min="0" v-on:change="update" />
 </template>
