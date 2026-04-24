@@ -14,7 +14,23 @@ function update(e: Event) {
 </script>
 
 <template>
-  <h1>{{ character }}</h1>
-   <img :src="imgUrl" />
-  <input type="number" min="0" v-on:change="update" />
+   <section>
+      <img :src="imgUrl" />
+      <input type="number" min="0" v-on:change="update" :value="model" />
+   </section>
 </template>
+
+<style scoped>
+   section {
+      border: 1px solid black;
+      margin: 1rem;
+      padding: .5rem;
+      max-width: 25ch;
+   }
+
+   img {
+      
+      max-width: 100px;
+   }
+   
+</style>
