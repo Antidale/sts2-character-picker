@@ -7,7 +7,7 @@ const props = defineProps<{
 
 const model = defineModel();
 
-const imgUrl = new URL(`../assets/img/StS2_${props.character}.webp`, import.meta.url).href;
+const imgUrl = new URL(`../assets/StS2_${props.character}.png`, import.meta.url).href;
 
 function update(e: Event) {
    model.value = (e.target as HTMLInputElement).value
