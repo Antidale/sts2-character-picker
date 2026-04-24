@@ -1,12 +1,13 @@
 <script setup lang="ts">
 
 const props = defineProps<{
-   character: string
+   character: string,
+   chosenCharacter: string
 }>()
 
 const model = defineModel();
 
-const imgUrl = new URL(`../assets/StS2_${props.character}.webp`, import.meta.url).href;
+const imgUrl = `/img/StS2_${props.character}.webp`;
 
 function update(e: Event) {
    model.value = (e.target as HTMLInputElement).value
@@ -14,23 +15,36 @@ function update(e: Event) {
 </script>
 
 <template>
-   <section>
+   <div :class="chosenCharacter === character ? 'active' : ''">
       <img :src="imgUrl" />
       <input type="number" min="0" v-on:change="update" :value="model" />
-   </section>
+   </div>
 </template>
 
 <style scoped>
-   section {
-      border: 1px solid black;
+   div {
+      display: grid;
+      border: 1px outset black;
       margin: 1rem;
       padding: .5rem;
-      max-width: 25ch;
+      border-radius: 5%;
    }
 
    img {
-      
-      max-width: 100px;
+      max-width: 170px;
+      display: inline;
+   }
+
+   input {
+      margin-top: .5rem;
+      max-width: 4rem;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: right;
+   }
+
+   .active {
+      background-color: pink;
    }
    
 </style>
