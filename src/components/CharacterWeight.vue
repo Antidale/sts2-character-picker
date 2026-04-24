@@ -2,12 +2,12 @@
 
 const props = defineProps<{
    character: string,
-   chosenCharacter: string
+   chosenChracter: string
 }>()
 
 const model = defineModel();
 
-const imgUrl = `/img/StS2_${props.character}.webp`;
+const imgUrl = new URL(`../assets/img/StS2_${props.character}.webp`, import.meta.url).href;
 
 function update(e: Event) {
    model.value = (e.target as HTMLInputElement).value
@@ -15,8 +15,9 @@ function update(e: Event) {
 </script>
 
 <template>
-   <div :class="chosenCharacter === character ? 'active' : ''">
+   <div :class="chosenChracter === character ? 'active' : ''">
       <img :src="imgUrl" />
+      <!-- Firefox, why do you not prevent -->
       <input type="number" min="0" v-on:change="update" :value="model" />
    </div>
 </template>
@@ -40,7 +41,7 @@ function update(e: Event) {
       max-width: 4rem;
       margin-left: auto;
       margin-right: auto;
-      text-align: right;
+      text-align: center;
    }
 
    .active {
