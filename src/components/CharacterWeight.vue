@@ -15,7 +15,7 @@ function update(e: Event) {
 </script>
 
 <template>
-   <div :class="chosenCharacter === character ? 'active' : ''">
+   <div :class="chosenCharacter === character ? 'active' : ''" :alt="character" :title="character">
       <img :src="imgUrl" />
       <!-- Firefox, why do you not prevent -->
       <input type="number" min="0" v-on:change="update" :value="model" />
