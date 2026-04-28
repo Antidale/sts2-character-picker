@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import CharacterWeight from './components/CharacterWeight.vue'
+import FancyButton from './components/FancyButton.vue'
+import type { CharacterSelection } from './types/CharacterSelection'
+import SelectionHistory from './components/SelectionHistory.vue'
+
 const ironCladModel = ref(20)
 const silentModel = ref(20)
 const regentModel = ref(20)
 const necrobinderModel = ref(20)
 const defectModel = ref(20)
+const selectionHistory = ref<CharacterSelection[]>([])
 const selectedCharacter = ref('')
+let digCount = 0;
 const ironclad = "Ironclad"
 const silent = "Silent"
 const regent = "Regent"
@@ -37,6 +43,9 @@ function selectCharacter() {
       selectedCharacter.value = defect
       break;
   }
+
+  selectionHistory.value.push({ id: digCount, name: selectedCharacter.value})
+  digCount++;
 }
 
 function randomInt() {
@@ -47,13 +56,11 @@ function randomInt() {
 <template>
   <header>
     <!-- <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" /> -->
-
-    
+    <h1 class="center">STS 2 Character Selector</h1>
   </header>
 
   <main>
-    <h1>STS 2 Character Selector</h1>
-    <p>Give each character chances of being selected. Setting their chances to zero means that character won't be picked</p>
+    <p class="center">Give each character chances of being selected. Setting their chances to zero means that character won't be picked</p>
     <section class="weight-group">
       <CharacterWeight v-model.number="ironCladModel" :character="ironclad" :chosen-character="selectedCharacter"></CharacterWeight>
       <CharacterWeight v-model.number="silentModel" :character="silent" :chosen-character="selectedCharacter"></CharacterWeight>
@@ -62,28 +69,21 @@ function randomInt() {
       <CharacterWeight v-model.number="defectModel" :character="defect" :chosen-character="selectedCharacter"></CharacterWeight>
       
     </section>
-    <p class="test">
-      <button v-on:click="selectCharacter">Dig!</button>
-
+    <p class="center">
+      <FancyButton button-label="Dig!" @clickMe="selectCharacter" ></FancyButton>
     </p>
-    <p v-if="selectedCharacter">
-      You dug up: {{  selectedCharacter }}
-    </p>
-    
-    
+    <h3 v-if="selectedCharacter" class="center">
+      You dug up: <strong>{{  selectedCharacter }}</strong>
+    </h3>
+    <SelectionHistory :selection-history="selectionHistory" ></SelectionHistory>
   </main>
 </template>
 
 <style scoped>
-  .weight-group{
+  .weight-group {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    max-width: 80ch;
-  }
-
-  h1, p {
-    text-align: center;
   }
 
   main {
@@ -96,21 +96,8 @@ function randomInt() {
     margin: 0 auto;
   }
 
-  button {
-    
-    
-    background-color: blue;
-    border: none;
-    color: white;
-    border-radius: 5px;
-    padding: 1rem 10rem;
-    font-size: large;
-    font-weight: bold;
-  }
-  
-  .test {
-    margin-left: auto;
-    margin-right: auto;
+  .center {
+    text-align: center;
   }
 
 </style>

@@ -15,9 +15,9 @@ function update(e: Event) {
 </script>
 
 <template>
-   <div :class="chosenCharacter === character ? 'active' : ''">
+   <div :class="chosenCharacter === character ? 'active' : ''" :alt="character" :title="character">
       <img :src="imgUrl" />
-      <!-- Firefox, why do you not prevent -->
+      <!-- Firefox, why do you not prevent non alpha keys on a numeric input? -->
       <input type="number" min="0" v-on:change="update" :value="model" />
    </div>
 </template>
@@ -29,11 +29,13 @@ function update(e: Event) {
       margin: 1rem;
       padding: .5rem;
       border-radius: 5%;
+      box-shadow: .2rem .2rem .6rem .1rem oklch(from black l c h / calc(alpha - .2));
    }
 
    img {
-      max-width: 170px;
-      display: inline;
+      /* override the base style here to make sure the cards fit into a row on most reasonable viewport widths on desktop */
+      max-inline-size: 170px;
+      margin: 5px;
    }
 
    input {
@@ -46,6 +48,9 @@ function update(e: Event) {
 
    .active {
       background-color: pink;
+      box-shadow:
+         inset 0 0 .2rem .2rem oklch(from white l c h / calc(alpha - 0.9)),
+         .2rem .2rem .6rem .1rem oklch(from black l c h / calc(alpha - .2));
    }
-   
+
 </style>
