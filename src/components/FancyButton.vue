@@ -30,7 +30,7 @@ button {
   appearance: none;
   background: forestgreen;
   padding: 1em 2em;
-  border-radius: 15px;
+  border-radius: var(--border-radius);
   border: 1px solid;
   color: white;
   position: relative;

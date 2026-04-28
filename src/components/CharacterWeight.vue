@@ -28,7 +28,7 @@ function update(e: Event) {
       border: 1px outset black;
       margin: 1rem;
       padding: .5rem;
-      border-radius: 5%;
+      border-radius: var(--border-radius);
       box-shadow: .2rem .2rem .6rem .1rem oklch(from black l c h / calc(alpha - .2));
    }
 
