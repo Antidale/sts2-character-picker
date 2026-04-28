@@ -22,6 +22,7 @@ const props = defineProps<{
     ol {
       list-style: none;
       display: flex;
+      flex-wrap: wrap;
       
     }
 
