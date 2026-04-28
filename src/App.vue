@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import CharacterWeight from './components/CharacterWeight.vue'
-
+import FancyButton from './components/FancyButton.vue'
 import type { CharacterSelection } from './types/CharacterSelection'
 import SelectionHistory from './components/SelectionHistory.vue'
 
@@ -71,12 +71,8 @@ function randomInt() {
       <CharacterWeight v-model.number="defectModel" :character="defect" :chosen-character="selectedCharacter"></CharacterWeight>
       
     </section>
-    <p class="test">
-      <button v-on:click="selectCharacter">Dig!</button>
-
-    </p>
-    <p v-if="selectedCharacter">
-      You dug up: {{  selectedCharacter }}
+    <p class="center">
+      <FancyButton button-label="Dig!" @clickMe="selectCharacter" ></FancyButton>
     </p>
     <h3 v-if="selectedCharacter" class="center">
       You dug up: <strong>{{  selectedCharacter }}</strong>
