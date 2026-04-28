@@ -56,12 +56,10 @@ function randomInt() {
 <template>
   <header>
     <!-- <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" /> -->
-
-    
+    <h1 class="center">STS 2 Character Selector</h1>
   </header>
 
   <main>
-    <h1 class="center">STS 2 Character Selector</h1>
     <p class="center">Give each character chances of being selected. Setting their chances to zero means that character won't be picked</p>
     <section class="weight-group">
       <CharacterWeight v-model.number="ironCladModel" :character="ironclad" :chosen-character="selectedCharacter"></CharacterWeight>
@@ -78,15 +76,11 @@ function randomInt() {
       You dug up: <strong>{{  selectedCharacter }}</strong>
     </h3>
     <SelectionHistory :selection-history="selectionHistory" ></SelectionHistory>
-    
-
-    
-    
   </main>
 </template>
 
 <style scoped>
-  .weight-group{
+  .weight-group {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -101,8 +95,9 @@ function randomInt() {
   section {
     margin: 0 auto;
   }
-  
+
   .center {
     text-align: center;
   }
+
 </style>

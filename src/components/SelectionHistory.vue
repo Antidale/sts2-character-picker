@@ -7,7 +7,8 @@ const props = defineProps<{
 </script>
 
 <template>
-<section v-if="props.selectionHistory.length > 0">
+    <br />
+    <section v-if="props.selectionHistory.length > 0">
       <h4 class="center" >Selection History</h4>
       <ul>
         <li v-for="character in props.selectionHistory" :key="character.id">
@@ -23,12 +24,16 @@ const props = defineProps<{
       list-style: none;
       display: flex;
       flex-wrap: wrap;
-      
     }
 
     li {
         margin-left: .5rem;
     }
 
+    section {
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 0 1rem
+    }
 
 </style>
