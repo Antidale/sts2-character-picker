@@ -1,4 +1,15 @@
-:root {}
+:root {
+  --background: #ffffff;
+  --background-alt: #fff6e6;
+  --primary: #294C60;
+  --primary-contrast: #ffffff;
+  --accent: #fca05d;
+  --color: #001b2e;
+  --danger: #c52b2b;
+  --shadow: #b8cfdd;
+  --border: #afbac0;
+  --border-radius: 10px
+}
 
 * {
   box-sizing: border-box;
