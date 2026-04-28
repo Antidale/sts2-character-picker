@@ -54,29 +54,30 @@ function randomInt() {
 </script>
 
 <template>
-  <header>
-    <!-- <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" /> -->
-    <h1 class="center">STS 2 Character Selector</h1>
-  </header>
-
-  <main>
-    <p class="center">Give each character chances of being selected. Setting their chances to zero means that character won't be picked</p>
-    <section class="weight-group">
-      <CharacterWeight v-model.number="ironCladModel" :character="ironclad" :chosen-character="selectedCharacter"></CharacterWeight>
-      <CharacterWeight v-model.number="silentModel" :character="silent" :chosen-character="selectedCharacter"></CharacterWeight>
-      <CharacterWeight v-model.number="regentModel" :character="regent" :chosen-character="selectedCharacter"></CharacterWeight>
-      <CharacterWeight v-model.number="necrobinderModel" :character="necrobinder" :chosen-character="selectedCharacter"></CharacterWeight>
-      <CharacterWeight v-model.number="defectModel" :character="defect" :chosen-character="selectedCharacter"></CharacterWeight>
-      
-    </section>
-    <p class="center">
-      <FancyButton button-label="Dig!" @clickMe="selectCharacter" ></FancyButton>
-    </p>
-    <h3 v-if="selectedCharacter" class="center">
-      You dug up: <strong>{{  selectedCharacter }}</strong>
-    </h3>
-    <SelectionHistory :selection-history="selectionHistory" ></SelectionHistory>
-  </main>
+    <header class="page-header">
+      <!-- <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" /> -->
+      <h1 class="center">STS 2 Character Selector</h1>
+    </header>
+    <main>
+      <p class="center">Give each character chances of being selected. Setting their chances to zero means that character won't be picked</p>
+      <section class="weight-group">
+        <CharacterWeight v-model.number="ironCladModel" :character="ironclad" :chosen-character="selectedCharacter"></CharacterWeight>
+        <CharacterWeight v-model.number="silentModel" :character="silent" :chosen-character="selectedCharacter"></CharacterWeight>
+        <CharacterWeight v-model.number="regentModel" :character="regent" :chosen-character="selectedCharacter"></CharacterWeight>
+        <CharacterWeight v-model.number="necrobinderModel" :character="necrobinder" :chosen-character="selectedCharacter"></CharacterWeight>
+        <CharacterWeight v-model.number="defectModel" :character="defect" :chosen-character="selectedCharacter"></CharacterWeight>
+      </section>
+      <p class="center">
+        <FancyButton button-label="Dig!" @clickMe="selectCharacter" ></FancyButton>
+      </p>
+      <h3 v-if="selectedCharacter" class="center">
+        You dug up: <strong>{{  selectedCharacter }}</strong>
+      </h3>
+      <SelectionHistory :selection-history="selectionHistory" ></SelectionHistory>
+    </main>
+    <footer class="page-footer">
+      <p class="center"><a href="https://github.com/Antidale/sts2-character-picker">Source</a></p>
+    </footer>
 </template>
 
 <style scoped>
@@ -99,5 +100,4 @@ function randomInt() {
   .center {
     text-align: center;
   }
-
 </style>
