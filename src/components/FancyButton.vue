@@ -77,7 +77,7 @@ button {
     background-image: linear-gradient(
       to right,
       purple,
-      color-mix(in srgb, purple, white 50%)
+      color-mix(in srgb, purple, var(--background) 50%)
     );
     border-radius: 100vw;
 

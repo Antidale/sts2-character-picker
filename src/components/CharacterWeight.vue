@@ -25,11 +25,11 @@ function update(e: Event) {
 <style scoped>
    div {
       display: grid;
-      border: 1px outset black;
+      border: 1px outset var(--color);
       margin: 1rem;
       padding: .5rem;
       border-radius: var(--border-radius);
-      box-shadow: .2rem .2rem .6rem .1rem oklch(from black l c h / calc(alpha - .2));
+      box-shadow: .2rem .2rem .6rem .1rem oklch(from var(--color) l c h / calc(alpha - .2));
    }
 
    img {
@@ -47,10 +47,10 @@ function update(e: Event) {
    }
 
    .active {
-      background-color: pink;
+      background-color: var(--accent);
       box-shadow:
-         inset 0 0 .2rem .2rem oklch(from white l c h / calc(alpha - 0.9)),
-         .2rem .2rem .6rem .1rem oklch(from black l c h / calc(alpha - .2));
+         inset 0 0 .2rem .2rem oklch(from var(--background) l c h / calc(alpha - 0.9)),
+         .2rem .2rem .6rem .1rem oklch(from var(--color) l c h / calc(alpha - .2));
    }
 
 </style>
