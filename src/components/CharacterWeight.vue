@@ -47,7 +47,7 @@ function update(e: Event) {
    }
 
    .active {
-      background-color: var(--accent);
+      background-color: oklch(from var(--accent) l c h / calc(alpha - .2));
       box-shadow:
          inset 0 0 .2rem .2rem oklch(from var(--background) l c h / calc(alpha - 0.9)),
          .2rem .2rem .6rem .1rem oklch(from var(--color) l c h / calc(alpha - .2));
