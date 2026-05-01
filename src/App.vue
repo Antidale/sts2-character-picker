@@ -4,6 +4,7 @@ import CharacterWeight from './components/CharacterWeight.vue'
 import FancyButton from './components/FancyButton.vue'
 import type { CharacterSelection } from './types/CharacterSelection'
 import SelectionHistory from './components/SelectionHistory.vue'
+import Header from './components/PageHeader.vue'
 
 const ironCladModel = ref(20)
 const silentModel = ref(20)
@@ -54,10 +55,7 @@ function randomInt() {
 </script>
 
 <template>
-    <header class="page-header">
-      <!-- <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" /> -->
-      <h1 class="center">STS 2 Character Selector</h1>
-    </header>
+    <Header></Header>
     <main>
       <p class="center">Give each character chances of being selected. Setting their chances to zero means that character won't be picked</p>
       <section class="weight-group">
@@ -97,7 +95,5 @@ function randomInt() {
     margin: 0 auto;
   }
 
-  .center {
-    text-align: center;
-  }
+  
 </style>

@@ -70,3 +70,7 @@ img {
 #app>footer {
   grid-area: footer;
 }
+
+.center {
+  text-align: center;
+}
