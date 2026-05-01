@@ -5,6 +5,7 @@ import FancyButton from './components/FancyButton.vue'
 import type { CharacterSelection } from './types/CharacterSelection'
 import SelectionHistory from './components/SelectionHistory.vue'
 import Header from './components/PageHeader.vue'
+import PageFooter from './components/PageFooter.vue'
 
 const ironCladModel = ref(20)
 const silentModel = ref(20)
@@ -73,9 +74,7 @@ function randomInt() {
       </h3>
       <SelectionHistory :selection-history="selectionHistory" ></SelectionHistory>
     </main>
-    <footer class="page-footer">
-      <p class="center"><a href="https://github.com/Antidale/sts2-character-picker">Source</a></p>
-    </footer>
+    <PageFooter></PageFooter>
 </template>
 
 <style scoped>

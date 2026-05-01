@@ -30,6 +30,7 @@ function update(e: Event) {
       padding: .5rem;
       border-radius: var(--border-radius);
       box-shadow: .2rem .2rem .6rem .1rem oklch(from var(--color) l c h / calc(alpha - .2));
+      background-color: oklch(from var(--background) calc(l + .2) c h / calc(alpha - .1));
    }
 
    img {
@@ -49,7 +50,7 @@ function update(e: Event) {
    .active {
       background-color: oklch(from var(--accent) l c h / calc(alpha - .2));
       box-shadow:
-         inset 0 0 .2rem .2rem oklch(from var(--background) l c h / calc(alpha - 0.9)),
+         inset 0 0 .2rem .2rem oklch(from var(--accent) l c h / calc(alpha - 0.1)),
          .2rem .2rem .6rem .1rem oklch(from var(--color) l c h / calc(alpha - .2));
    }
 
