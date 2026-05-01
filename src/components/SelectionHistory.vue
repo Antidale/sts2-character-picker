@@ -11,8 +11,9 @@ const props = defineProps<{
     <section v-if="props.selectionHistory.length > 0">
       <h4 class="center" >Selection History</h4>
       <ul>
+        <!-- Currently doing it this way to show two different ways of handling images in vue -->
         <li v-for="character in props.selectionHistory" :key="character.id">
-          {{ character.name }}
+          <img :src="`/img/StS2_${character.name}.png`" width="50px"/>
         </li>
       </ul>
     </section>
@@ -33,7 +34,10 @@ const props = defineProps<{
     section {
         border: 1px solid black;
         border-radius: var(--border-radius);
-        padding: 0 1rem
+        padding: 0 1rem;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
 </style>
