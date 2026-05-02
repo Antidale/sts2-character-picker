@@ -32,7 +32,7 @@ const props = defineProps<{
     }
 
     section {
-        border: 1px solid black;
+        border: 1px solid var(--color);
         border-radius: var(--border-radius);
         padding: 0 1rem;
         max-width: 90%;
