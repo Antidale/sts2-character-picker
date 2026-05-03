@@ -7,4 +7,3 @@ export const Store = reactive({
     necrobinderModel: ref(20),
     defectModel: ref(20),
 })
-

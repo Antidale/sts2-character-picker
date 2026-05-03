@@ -1,6 +1,6 @@
 html {
   --background: #F4F2F3;
-  --background-alt: #fff6e6;
+  --background-alt: oklch(from var(--background) calc(l + .2) c h / calc(alpha - .1));
   --primary: #294C60;
   --primary-contrast: #ffffff;
   --accent: #9EBC9F;
@@ -21,7 +21,7 @@ html {
 @media(prefers-color-scheme: dark) {
   html {
     --background: #230903;
-    --background-alt: #07314e;
+    --background-alt: oklch(from var(--background) calc(l + .2) c h / calc(alpha - .1));
     --primary: #84cbf3;
     --primary-contrast: #001b2e;
     --accent: #9EBC9F;
