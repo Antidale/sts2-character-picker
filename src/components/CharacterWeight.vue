@@ -30,7 +30,7 @@ function update(e: Event) {
       padding: .5rem;
       border-radius: var(--border-radius);
       box-shadow: .2rem .2rem .6rem .1rem oklch(from var(--color) l c h / calc(alpha - .2));
-      background-color: oklch(from var(--background) calc(l + .2) c h / calc(alpha - .1));
+      background-color: var(--background-alt)
    }
 
    img {
