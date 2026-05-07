@@ -1,11 +1,13 @@
 <script setup lang="ts">
-
+  import SettingsMenu from './SettingsMenu.vue';
 </script>
 
 <template>
     <header class="page-header">
       <h1 class="center">STS 2 Character Selector</h1>
+      <SettingsMenu></SettingsMenu>
     </header>
+    
 </template>
 
 <style lang="css" scoped>

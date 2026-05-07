@@ -28,10 +28,6 @@ const props = defineProps<{
       gap: 1.5rem;
     }
 
-    li {
-        
-    }
-
     section {
         border: 1px solid var(--color);
         border-radius: var(--border-radius);

@@ -6,39 +6,34 @@ import type { CharacterSelection } from './types/CharacterSelection'
 import SelectionHistory from './components/SelectionHistory.vue'
 import Header from './components/PageHeader.vue'
 import PageFooter from './components/PageFooter.vue'
-import { Store } from './state.ts'
+import { Store, Characters } from './state.ts'
 
 const selectionHistory = ref<CharacterSelection[]>([])
 const selectedCharacter = ref('')
 let digCount = 0;
-const ironclad = "Ironclad"
-const silent = "Silent"
-const regent = "Regent"
-const necrobinder = "Necrobinder"
-const defect = "Defect"
 
 function selectCharacter() {
   const luckyNumber = randomInt();
   switch (true) {
     
     case luckyNumber <= Store.ironCladModel:
-      selectedCharacter.value =  ironclad;
+      selectedCharacter.value =  Characters.ironclad
       break;
 
     case luckyNumber <= Store.ironCladModel + Store.silentModel:
-      selectedCharacter.value = silent
+      selectedCharacter.value = Characters.silent
       break;
 
     case luckyNumber <= Store.ironCladModel + Store.silentModel + Store.regentModel:
-      selectedCharacter.value = regent
+      selectedCharacter.value = Characters.regent
       break;
     
     case luckyNumber <= Store.ironCladModel + Store.silentModel + Store.regentModel + Store.necrobinderModel:
-      selectedCharacter.value = necrobinder
+      selectedCharacter.value = Characters.necrobinder
       break;
     
     default:
-      selectedCharacter.value = defect
+      selectedCharacter.value = Characters.defect
       break;
   }
 
@@ -54,13 +49,13 @@ function randomInt() {
 <template>
     <Header></Header>
     <main>
-      <p class="center">Give each character chances of being selected. Setting their chances to zero means that character won't be picked</p>
+      <p class="center">Give each character chances of being selected. Setting a value to zero means that character won't be chosen</p>
       <section class="weight-group">
-        <CharacterWeight v-model.number="Store.ironCladModel" :character="ironclad" :chosen-character="selectedCharacter"></CharacterWeight>
-        <CharacterWeight v-model.number="Store.silentModel" :character="silent" :chosen-character="selectedCharacter"></CharacterWeight>
-        <CharacterWeight v-model.number="Store.regentModel" :character="regent" :chosen-character="selectedCharacter"></CharacterWeight>
-        <CharacterWeight v-model.number="Store.necrobinderModel" :character="necrobinder" :chosen-character="selectedCharacter"></CharacterWeight>
-        <CharacterWeight v-model.number="Store.defectModel" :character="defect" :chosen-character="selectedCharacter"></CharacterWeight>
+        <CharacterWeight v-model.number="Store.ironCladModel" :character="Characters.ironclad" :chosen-character="selectedCharacter"></CharacterWeight>
+        <CharacterWeight v-model.number="Store.silentModel" :character="Characters.silent" :chosen-character="selectedCharacter"></CharacterWeight>
+        <CharacterWeight v-model.number="Store.regentModel" :character="Characters.regent" :chosen-character="selectedCharacter"></CharacterWeight>
+        <CharacterWeight v-model.number="Store.necrobinderModel" :character="Characters.necrobinder" :chosen-character="selectedCharacter"></CharacterWeight>
+        <CharacterWeight v-model.number="Store.defectModel" :character="Characters.defect" :chosen-character="selectedCharacter"></CharacterWeight>
       </section>
       <p class="center">
         <FancyButton button-label="Dig!" @clickMe="selectCharacter" ></FancyButton>

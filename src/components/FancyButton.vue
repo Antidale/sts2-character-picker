@@ -17,7 +17,7 @@ const props = defineProps<{
     </button>
 </template>
 
-<style lang="css">
+<style lang="css" scoped>
 /* Concept from: 
     https://codepen.io/kevinpowell/pen/VYvWKBV
     (youtube video: https://www.youtube.com/watch?v=bjw0ka0raMA)
