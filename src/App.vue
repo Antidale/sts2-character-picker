@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import CharacterWeight from './components/CharacterWeight.vue'
 import FancyButton from './components/FancyButton.vue'
 import type { CharacterSelection } from './types/CharacterSelection'
@@ -14,21 +14,22 @@ let digCount = 0;
 
 function selectCharacter() {
   const luckyNumber = randomInt();
+  //TODO: see how this can be cleaned up a bit
   switch (true) {
     
-    case luckyNumber <= Store.IroncladModel:
+    case luckyNumber <= Store.Ironclad.model:
       selectedCharacter.value =  Characters.ironclad
       break;
 
-    case luckyNumber <= Store.IroncladModel + Store.SilentModel:
+    case luckyNumber <= Store.Ironclad.model + Store.Silent.model:
       selectedCharacter.value = Characters.silent
       break;
 
-    case luckyNumber <= Store.IroncladModel + Store.SilentModel + Store.RegentModel:
+    case luckyNumber <= Store.Ironclad.model + Store.Silent.model + Store.Regent.model:
       selectedCharacter.value = Characters.regent
       break;
     
-    case luckyNumber <= Store.IroncladModel + Store.SilentModel + Store.RegentModel + Store.NecrobinderModel:
+    case luckyNumber <= Store.Ironclad.model + Store.Silent.model + Store.Regent.model + Store.Necrobinder.model:
       selectedCharacter.value = Characters.necrobinder
       break;
     
@@ -39,12 +40,32 @@ function selectCharacter() {
 
   digCount++;
   selectionHistory.value.push({ id: digCount, name: selectedCharacter.value})
-
+  
+  updateChances(selectedCharacter.value);
 }
+
+function updateChances(characterName: string) {
+   const characterArray = [Store.Ironclad, Store.Silent, Store.Regent, Store.Necrobinder, Store.Defect]
+
+   characterArray.forEach(character => {
+      if(character.name == characterName) {
+        const newValue = Math.max(character.model - Store.SelectedAdjustmentValue, 0)
+        character.model = newValue;
+      } else {
+        character.model += Store.NotSelectedAdjustmentValue
+      } 
+   });
+}
+
+//TODO: look and see if you can figure out how to only have one way of making this array, possibly in the Store, since doing it here and above on updateChances is a little bonkers
+const CharacterModels = computed(() => {
+  return [Store.Ironclad, Store.Silent, Store.Regent, Store.Necrobinder, Store.Defect]
+})
 
 function randomInt() {
-  return Math.floor(Math.random() * (Store.IroncladModel + Store.SilentModel + Store.RegentModel + Store.NecrobinderModel + Store.DefectModel)) + 1
+  return Math.floor(Math.random() * (Store.Ironclad.model + Store.Silent.model + Store.Regent.model + Store.Necrobinder.model + Store.Defect.model)) + 1
 }
+
 </script>
 
 <template>
@@ -52,11 +73,7 @@ function randomInt() {
     <main>
       <p class="center">Give each character chances of being selected. Setting a value to zero means that character won't be chosen</p>
       <section class="weight-group">
-        <CharacterWeight v-model.number="Store.IroncladModel" :character="Characters.ironclad" :chosen-character="selectedCharacter"></CharacterWeight>
-        <CharacterWeight v-model.number="Store.SilentModel" :character="Characters.silent" :chosen-character="selectedCharacter"></CharacterWeight>
-        <CharacterWeight v-model.number="Store.RegentModel" :character="Characters.regent" :chosen-character="selectedCharacter"></CharacterWeight>
-        <CharacterWeight v-model.number="Store.NecrobinderModel" :character="Characters.necrobinder" :chosen-character="selectedCharacter"></CharacterWeight>
-        <CharacterWeight v-model.number="Store.DefectModel" :character="Characters.defect" :chosen-character="selectedCharacter"></CharacterWeight>
+        <CharacterWeight v-for="character in CharacterModels" :key="character.name" v-model.number="character.model" :character="character.name" :chosen-character="selectedCharacter"></CharacterWeight>
       </section>
       <p class="center">
         <FancyButton button-label="Dig!" @clickMe="selectCharacter" ></FancyButton>
@@ -85,6 +102,4 @@ function randomInt() {
   section {
     margin: 0 auto;
   }
-
-  
 </style>

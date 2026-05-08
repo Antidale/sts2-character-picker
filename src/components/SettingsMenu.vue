@@ -12,11 +12,11 @@ const SelectedAdjustmentSetting = ref(0);
 const NotSelectedAdjustmentSetting = ref(0);
 
 function applyDefaults() {
-    Store.IroncladModel = IroncladSetting.value;
-    Store.SilentModel = SilentSetting.value;
-    Store.RegentModel = RegentSetting.value;
-    Store.NecrobinderModel = NecrobinderSetting.value;
-    Store.DefectModel = DefectSetting.value;
+    Store.Ironclad.model = IroncladSetting.value;
+    Store.Silent.model = SilentSetting.value;
+    Store.Regent.model = RegentSetting.value;
+    Store.Necrobinder.model = NecrobinderSetting.value;
+    Store.Defect.model = DefectSetting.value;
 	Store.SelectedAdjustmentValue = SelectedAdjustmentSetting.value;
 	Store.NotSelectedAdjustmentValue = NotSelectedAdjustmentSetting.value;
 }
