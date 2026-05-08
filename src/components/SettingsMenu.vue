@@ -3,18 +3,22 @@ import { onMounted, ref, type Ref } from 'vue';
 import DefaultValue from './DefaultValue.vue';
 import { Store, Characters } from '@/state'
 
-const ironcladSetting = ref(20);
-const silentSetting = ref(20);
-const regentSetting = ref(20);
-const necrobinderSetting = ref(20);
-const defectSetting = ref(20);
+const IroncladSetting = ref(20);
+const SilentSetting = ref(20);
+const RegentSetting = ref(20);
+const NecrobinderSetting = ref(20);
+const DefectSetting = ref(20);
+const SelectedAdjustmentSetting = ref(0);
+const NotSelectedAdjustmentSetting = ref(0);
 
 function applyDefaults() {
-    Store.ironCladModel = ironcladSetting.value;
-    Store.silentModel = silentSetting.value;
-    Store.regentModel = regentSetting.value;
-    Store.necrobinderModel = necrobinderSetting.value;
-    Store.defectModel = defectSetting.value;
+    Store.IroncladModel = IroncladSetting.value;
+    Store.SilentModel = SilentSetting.value;
+    Store.RegentModel = RegentSetting.value;
+    Store.NecrobinderModel = NecrobinderSetting.value;
+    Store.DefectModel = DefectSetting.value;
+	Store.SelectedAdjustmentValue = SelectedAdjustmentSetting.value;
+	Store.NotSelectedAdjustmentValue = NotSelectedAdjustmentSetting.value;
 }
 
 function getSettingDefault(defaultSetting: Ref<number, number>, settingName: string)
@@ -27,11 +31,13 @@ function getSettingDefault(defaultSetting: Ref<number, number>, settingName: str
 }
 
 onMounted(() => {
-    getSettingDefault(ironcladSetting, Characters.ironclad);
-    getSettingDefault(silentSetting, Characters.silent);
-    getSettingDefault(regentSetting, Characters.regent);
-    getSettingDefault(necrobinderSetting, Characters.necrobinder);
-    getSettingDefault(defectSetting, Characters.defect);
+    getSettingDefault(IroncladSetting, Characters.ironclad);
+    getSettingDefault(SilentSetting, Characters.silent);
+    getSettingDefault(RegentSetting, Characters.regent);
+    getSettingDefault(NecrobinderSetting, Characters.necrobinder);
+    getSettingDefault(DefectSetting, Characters.defect);
+    getSettingDefault(SelectedAdjustmentSetting, "Selection Decrement");
+    getSettingDefault(NotSelectedAdjustmentSetting, "Unselected Increment");
 
     applyDefaults();
 })
@@ -56,11 +62,13 @@ function closePopover()
 					</p>
 				</div>
                 <section class="input-grid">
-                    <DefaultValue v-model.number="ironcladSetting" :label="Characters.ironclad"></DefaultValue>
-                    <DefaultValue v-model.number="silentSetting" :label="Characters.silent"></DefaultValue>
-                    <DefaultValue v-model.number="regentSetting" :label="Characters.regent"></DefaultValue>
-                    <DefaultValue v-model.number="necrobinderSetting" :label="Characters.necrobinder"></DefaultValue>
-                    <DefaultValue v-model.number="defectSetting" :label="Characters.defect"></DefaultValue>
+                    <DefaultValue v-model.number="IroncladSetting" :label="Characters.ironclad"></DefaultValue>
+                    <DefaultValue v-model.number="SilentSetting" :label="Characters.silent"></DefaultValue>
+                    <DefaultValue v-model.number="RegentSetting" :label="Characters.regent"></DefaultValue>
+                    <DefaultValue v-model.number="NecrobinderSetting" :label="Characters.necrobinder"></DefaultValue>
+                    <DefaultValue v-model.number="DefectSetting" :label="Characters.defect"></DefaultValue>
+                    <DefaultValue v-model.number="SelectedAdjustmentSetting" label="Selection Decrement"></DefaultValue>
+                    <DefaultValue v-model.number="NotSelectedAdjustmentSetting" label="Unselected Increment"></DefaultValue>
                 </section>
             </div>
             
@@ -132,7 +140,6 @@ function closePopover()
 
 	h2, p{
 		text-align: center;
-		
 	}
 
 	p {

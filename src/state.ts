@@ -7,11 +7,13 @@ const necrobinder = "Necrobinder"
 const defect = "Defect"
 
 const Store = reactive({
-    ironCladModel: ref(20),
-    silentModel: ref(20),
-    regentModel: ref(20),
-    necrobinderModel: ref(20),
-    defectModel: ref(20)
+    IroncladModel: ref(20),
+    SilentModel: ref(20),
+    RegentModel: ref(20),
+    NecrobinderModel: ref(20),
+    DefectModel: ref(20),
+    SelectedAdjustmentValue: ref(0),
+    NotSelectedAdjustmentValue: ref(0)
 })
 
 const Characters = {
@@ -24,5 +26,3 @@ const Characters = {
 }
 
 export { Store, Characters };
-
-
