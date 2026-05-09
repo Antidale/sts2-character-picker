@@ -31,6 +31,8 @@ function getSettingDefault(defaultSetting: Ref<number, number>, settingName: str
 }
 
 onMounted(() => {
+    //TODO: refactor this to use Store.$character.name
+    // and also iterate from some data structure
     getSettingDefault(IroncladSetting, Characters.ironclad);
     getSettingDefault(SilentSetting, Characters.silent);
     getSettingDefault(RegentSetting, Characters.regent);
@@ -62,6 +64,7 @@ function closePopover()
 					</p>
 				</div>
                 <section class="input-grid">
+                    <!-- TODO: instead of listing these out like this, refactore to use a v-for -->
                     <DefaultValue v-model.number="IroncladSetting" :label="Characters.ironclad"></DefaultValue>
                     <DefaultValue v-model.number="SilentSetting" :label="Characters.silent"></DefaultValue>
                     <DefaultValue v-model.number="RegentSetting" :label="Characters.regent"></DefaultValue>
@@ -116,6 +119,10 @@ function closePopover()
     
     dialog::backdrop {
         backdrop-filter: blur(5px);
+    }
+
+    :popover-open {
+        border-radius: var(--border-radius);
     }
 
     #settings-popover > div {
