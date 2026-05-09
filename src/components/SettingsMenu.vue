@@ -54,7 +54,7 @@ function closePopover()
 
 <template>
     <section id="settings-menu">
-        <button popovertarget="settings-popover" class="settings-button"></button>
+        <button popovertarget="settings-popover" class="settings-button nf nf-cod-settings_gear"></button>
         <dialog popover id="settings-popover">
             <div>
 				<div class="text-header">
@@ -108,9 +108,9 @@ function closePopover()
     .settings-button {
         background-color: var(--background);
         margin-top: .5px;
-        font-size: 2.5rem;
-        font-weight: bold;
-        width: 5rem;
+        font-size: 1.3rem;
+        width: 4rem;
+        height: 3rem;
         line-height: 1.1;
         color: var(--color);
         border-radius: var(--border-radius);

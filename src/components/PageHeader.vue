@@ -4,7 +4,7 @@
 
 <template>
     <header class="page-header">
-      <h1 class="center">STS 2 Character Selector</h1>
+      <h1 class="center">STS2 Character Selector</h1>
       <SettingsMenu></SettingsMenu>
     </header>
     

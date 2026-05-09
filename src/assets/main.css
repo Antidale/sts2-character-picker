@@ -1,3 +1,5 @@
+@import "https://www.nerdfonts.com/assets/css/webfont.css";
+
 html {
   --background: #F4F2F3;
   --background-alt: oklch(from var(--background) calc(l + .2) c h / calc(alpha - .1));
