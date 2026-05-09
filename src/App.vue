@@ -6,7 +6,7 @@ import type { CharacterSelection } from './types/CharacterSelection'
 import SelectionHistory from './components/SelectionHistory.vue'
 import Header from './components/PageHeader.vue'
 import PageFooter from './components/PageFooter.vue'
-import { Store, Characters } from './state.ts'
+import { Store } from './state.ts'
 
 const selectionHistory = ref<CharacterSelection[]>([])
 const selectedCharacter = ref('')
@@ -18,23 +18,23 @@ function selectCharacter() {
   switch (true) {
     
     case luckyNumber <= Store.Ironclad.model:
-      selectedCharacter.value =  Characters.ironclad
+      selectedCharacter.value =  Store.Ironclad.name
       break;
 
     case luckyNumber <= Store.Ironclad.model + Store.Silent.model:
-      selectedCharacter.value = Characters.silent
+      selectedCharacter.value = Store.Silent.name
       break;
 
     case luckyNumber <= Store.Ironclad.model + Store.Silent.model + Store.Regent.model:
-      selectedCharacter.value = Characters.regent
+      selectedCharacter.value = Store.Regent.name
       break;
     
     case luckyNumber <= Store.Ironclad.model + Store.Silent.model + Store.Regent.model + Store.Necrobinder.model:
-      selectedCharacter.value = Characters.necrobinder
+      selectedCharacter.value = Store.Necrobinder.name
       break;
     
     default:
-      selectedCharacter.value = Characters.defect
+      selectedCharacter.value = Store.Defect.name
       break;
   }
 
