@@ -8,6 +8,7 @@ const SilentSetting = ref(20);
 const RegentSetting = ref(20);
 const NecrobinderSetting = ref(20);
 const DefectSetting = ref(20);
+const FoolSetting = ref(20);
 const SelectedAdjustmentSetting = ref(0);
 const NotSelectedAdjustmentSetting = ref(0);
 
@@ -17,6 +18,7 @@ function applyDefaults() {
     Store.Regent.model = RegentSetting.value;
     Store.Necrobinder.model = NecrobinderSetting.value;
     Store.Defect.model = DefectSetting.value;
+    Store.Fool.model = FoolSetting.value;
 	Store.SelectedAdjustmentValue = SelectedAdjustmentSetting.value;
 	Store.NotSelectedAdjustmentValue = NotSelectedAdjustmentSetting.value;
 }
@@ -36,6 +38,7 @@ onMounted(() => {
     getSettingDefault(RegentSetting, Characters.regent);
     getSettingDefault(NecrobinderSetting, Characters.necrobinder);
     getSettingDefault(DefectSetting, Characters.defect);
+    getSettingDefault(FoolSetting, Characters.fool);
     getSettingDefault(SelectedAdjustmentSetting, "Selection Decrement");
     getSettingDefault(NotSelectedAdjustmentSetting, "Unselected Increment");
 
@@ -67,6 +70,7 @@ function closePopover()
                     <DefaultValue v-model.number="RegentSetting" :label="Characters.regent"></DefaultValue>
                     <DefaultValue v-model.number="NecrobinderSetting" :label="Characters.necrobinder"></DefaultValue>
                     <DefaultValue v-model.number="DefectSetting" :label="Characters.defect"></DefaultValue>
+                    <DefaultValue v-model.number="FoolSetting" :label="Characters.fool"></DefaultValue>
                     <DefaultValue v-model.number="SelectedAdjustmentSetting" label="Selection Decrement"></DefaultValue>
                     <DefaultValue v-model.number="NotSelectedAdjustmentSetting" label="Unselected Increment"></DefaultValue>
                 </section>

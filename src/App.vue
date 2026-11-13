@@ -32,6 +32,10 @@ function selectCharacter() {
     case luckyNumber <= Store.Ironclad.model + Store.Silent.model + Store.Regent.model + Store.Necrobinder.model:
       selectedCharacter.value = Characters.necrobinder
       break;
+
+    case luckyNumber <= Store.Ironclad.model + Store.Silent.model + Store.Regent.model + Store.Necrobinder.model + Store.Fool.model:
+      selectedCharacter.value = Characters.fool
+      break;
     
     default:
       selectedCharacter.value = Characters.defect
@@ -45,7 +49,7 @@ function selectCharacter() {
 }
 
 function updateChances(characterName: string) {
-   const characterArray = [Store.Ironclad, Store.Silent, Store.Regent, Store.Necrobinder, Store.Defect]
+   const characterArray = [Store.Ironclad, Store.Silent, Store.Regent, Store.Necrobinder, Store.Defect, Store.Fool]
 
    characterArray.forEach(character => {
       if(character.name == characterName) {
@@ -59,11 +63,11 @@ function updateChances(characterName: string) {
 
 //TODO: look and see if you can figure out how to only have one way of making this array, possibly in the Store, since doing it here and above on updateChances is a little bonkers
 const CharacterModels = computed(() => {
-  return [Store.Ironclad, Store.Silent, Store.Regent, Store.Necrobinder, Store.Defect]
+  return [Store.Ironclad, Store.Silent, Store.Regent, Store.Necrobinder, Store.Defect, Store.Fool]
 })
 
 function randomInt() {
-  return Math.floor(Math.random() * (Store.Ironclad.model + Store.Silent.model + Store.Regent.model + Store.Necrobinder.model + Store.Defect.model)) + 1
+  return Math.floor(Math.random() * (Store.Ironclad.model + Store.Silent.model + Store.Regent.model + Store.Necrobinder.model + Store.Defect.model + Store.Fool.model)) + 1
 }
 
 </script>

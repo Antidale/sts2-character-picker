@@ -35,7 +35,7 @@ function update(e: Event) {
 
    img {
       /* override the base style here to make sure the cards fit into a row on most reasonable viewport widths on desktop */
-      max-inline-size: 170px;
+      max-inline-size: 120px;
       margin: 5px;
    }
 
