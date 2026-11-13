@@ -49,9 +49,7 @@ function selectCharacter() {
 }
 
 function updateChances(characterName: string) {
-   const characterArray = [Store.Ironclad, Store.Silent, Store.Regent, Store.Necrobinder, Store.Defect, Store.Fool]
-
-   characterArray.forEach(character => {
+      CharacterModels.value.forEach(character => {
       if(character.name == characterName) {
         const newValue = Math.max(character.model - Store.SelectedAdjustmentValue, 0)
         character.model = newValue;
