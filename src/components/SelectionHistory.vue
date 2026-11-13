@@ -13,7 +13,7 @@ const props = defineProps<{
       <ul>
         <!-- Currently doing it this way to show two different ways of handling images in vue -->
         <li v-for="character in props.selectionHistory" :key="character.id">
-          <img :src="`/img/StS2_${character.name}.png`" width="75px"/>
+          <img :src="`/img/StS2_${character.name}.png`" width="50px"/>
         </li>
       </ul>
     </section>

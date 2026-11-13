@@ -5,6 +5,7 @@ const silent = "Silent"
 const regent = "Regent"
 const necrobinder = "Necrobinder"
 const defect = "Defect"
+const fool = "Fool"
 
 const Store = reactive({
     Ironclad: { name: ironclad, model: ref(20) },
@@ -12,6 +13,7 @@ const Store = reactive({
     Regent: { name: regent, model: ref(20) },
     Necrobinder: { name: necrobinder, model: ref(20) },
     Defect: { name: defect, model: ref(20) },
+    Fool: { name: fool, model: ref(20) },
     SelectedAdjustmentValue: ref(0),
     NotSelectedAdjustmentValue: ref(0)
 })
@@ -22,7 +24,8 @@ const Characters = {
     regent: regent,
     necrobinder: necrobinder,
     defect: defect,
-    characterNames: [ironclad, silent, regent, necrobinder, defect]
+    fool: fool,
+    characterNames: [ironclad, silent, regent, necrobinder, defect, fool]
 }
 
 export { Store, Characters };
