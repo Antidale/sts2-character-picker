@@ -36,10 +36,10 @@ function selectCharacter() {
 function updateChances(characterName: string) {
       CharacterModels.value.forEach(character => {
       if(character.name == characterName) {
-        const newValue = Math.max(character.model - Store.SelectedAdjustmentValue, 0)
+        const newValue = Math.max(character.model - Store.SelectedAdjustmentValue.model, 0)
         character.model = newValue;
       } else {
-        character.model += Store.NotSelectedAdjustmentValue
+        character.model += Store.NotSelectedAdjustmentValue.model
       } 
    });
 }
@@ -64,7 +64,7 @@ function randomInt() {
         <FancyButton button-label="Dig!" @clickMe="selectCharacter" ></FancyButton>
       </p>
       <h3 v-if="selectedCharacter" class="center">
-        You dug up: <strong>{{  selectedCharacter }}</strong>
+        You dug up: <strong>{{ selectedCharacter }}</strong>
       </h3>
       <SelectionHistory :selection-history="selectionHistory" ></SelectionHistory>
     </main>

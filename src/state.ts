@@ -8,19 +8,23 @@ const defect = "Defect"
 const fool = "Fool"
 
 const Store = reactive({
-    Ironclad: { name: ironclad, model: ref(20) },
-    Silent: { name: silent, model: ref(20) },
-    Regent: { name: regent, model: ref(20) },
-    Necrobinder: { name: necrobinder, model: ref(20) },
-    Defect: { name: defect, model: ref(20) },
-    Fool: { name: fool, model: ref(20) },
-    SelectedAdjustmentValue: ref(0),
-    NotSelectedAdjustmentValue: ref(0)
+    Ironclad: { name: ironclad, model: ref(20), default: ref(20) },
+    Silent: { name: silent, model: ref(20), default: ref(20) },
+    Regent: { name: regent, model: ref(20), default: ref(20) },
+    Necrobinder: { name: necrobinder, model: ref(20), default: ref(20) },
+    Defect: { name: defect, model: ref(20), default: ref(20) },
+    Fool: { name: fool, model: ref(20), default: ref(20) },
+
+    SelectedAdjustmentValue: { name: "Selection Decrement", model: ref(0), default: ref(0) },
+    NotSelectedAdjustmentValue: { name: "Unselected Increment", model: ref(0), default: ref(0) }
 })
 
 const CharacterModels = computed(() => {
     return [Store.Ironclad, Store.Silent, Store.Regent, Store.Necrobinder, Store.Defect, Store.Fool]
 })
+
+const Settings = computed(() => [Store.Ironclad, Store.Silent, Store.Regent, Store.Necrobinder, Store.Defect, Store.Fool, Store.SelectedAdjustmentValue, Store.NotSelectedAdjustmentValue])
+
 
 const Characters = {
     ironclad: ironclad,
@@ -32,4 +36,4 @@ const Characters = {
     characterNames: [ironclad, silent, regent, necrobinder, defect, fool]
 }
 
-export { Store, Characters, CharacterModels };
+export { Store, Characters, CharacterModels, Settings };
