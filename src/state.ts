@@ -1,4 +1,4 @@
-import { reactive, ref } from 'vue';
+import { computed, reactive, ref } from 'vue';
 
 const ironclad = "Ironclad"
 const silent = "Silent"
@@ -18,6 +18,10 @@ const Store = reactive({
     NotSelectedAdjustmentValue: ref(0)
 })
 
+const CharacterModels = computed(() => {
+    return [Store.Ironclad, Store.Silent, Store.Regent, Store.Necrobinder, Store.Defect, Store.Fool]
+})
+
 const Characters = {
     ironclad: ironclad,
     silent: silent,
@@ -28,4 +32,4 @@ const Characters = {
     characterNames: [ironclad, silent, regent, necrobinder, defect, fool]
 }
 
-export { Store, Characters };
+export { Store, Characters, CharacterModels };

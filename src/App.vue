@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import CharacterWeight from './components/CharacterWeight.vue'
 import FancyButton from './components/FancyButton.vue'
 import type { CharacterSelection } from './types/CharacterSelection'
 import SelectionHistory from './components/SelectionHistory.vue'
 import Header from './components/PageHeader.vue'
 import PageFooter from './components/PageFooter.vue'
-import { Store, Characters } from './state.ts'
+import { Store, CharacterModels } from './state.ts'
 
 const selectionHistory = ref<CharacterSelection[]>([])
 const selectedCharacter = ref('')
@@ -14,32 +14,17 @@ let digCount = 0;
 
 function selectCharacter() {
   const luckyNumber = randomInt();
-  //TODO: see how this can be cleaned up a bit
-  switch (true) {
-    
-    case luckyNumber <= Store.Ironclad.model:
-      selectedCharacter.value =  Characters.ironclad
-      break;
 
-    case luckyNumber <= Store.Ironclad.model + Store.Silent.model:
-      selectedCharacter.value = Characters.silent
-      break;
+  for(let i = 0; i < CharacterModels.value.length; i++)
+  {
+    const slicedCharacters = CharacterModels.value.slice(0, i+1)
+    const reducedSum = slicedCharacters.reduce(sumOdds, 0)
 
-    case luckyNumber <= Store.Ironclad.model + Store.Silent.model + Store.Regent.model:
-      selectedCharacter.value = Characters.regent
+    if(luckyNumber <= reducedSum)
+    {
+      selectedCharacter.value =CharacterModels.value[i]?.name || "";
       break;
-    
-    case luckyNumber <= Store.Ironclad.model + Store.Silent.model + Store.Regent.model + Store.Necrobinder.model:
-      selectedCharacter.value = Characters.necrobinder
-      break;
-
-    case luckyNumber <= Store.Ironclad.model + Store.Silent.model + Store.Regent.model + Store.Necrobinder.model + Store.Fool.model:
-      selectedCharacter.value = Characters.fool
-      break;
-    
-    default:
-      selectedCharacter.value = Characters.defect
-      break;
+    }
   }
 
   digCount++;
@@ -59,13 +44,11 @@ function updateChances(characterName: string) {
    });
 }
 
-//TODO: look and see if you can figure out how to only have one way of making this array, possibly in the Store, since doing it here and above on updateChances is a little bonkers
-const CharacterModels = computed(() => {
-  return [Store.Ironclad, Store.Silent, Store.Regent, Store.Necrobinder, Store.Defect, Store.Fool]
-})
+const sumOdds = (acc: number, curr: { model: number }) => acc + curr.model;
 
 function randomInt() {
-  return Math.floor(Math.random() * (Store.Ironclad.model + Store.Silent.model + Store.Regent.model + Store.Necrobinder.model + Store.Defect.model + Store.Fool.model)) + 1
+  const overallChance = CharacterModels.value.reduce(sumOdds, 0);
+  return Math.floor(Math.random() * overallChance) + 1
 }
 
 </script>
