@@ -1,56 +1,33 @@
 <script setup lang="ts">
-import { onMounted, ref, type Ref } from 'vue';
+import { onMounted } from 'vue';
 import DefaultValue from './DefaultValue.vue';
-import { Store, Characters } from '@/state'
+import { Settings } from '@/state'
 
-const IroncladSetting = ref(20);
-const SilentSetting = ref(20);
-const RegentSetting = ref(20);
-const NecrobinderSetting = ref(20);
-const DefectSetting = ref(20);
-const FoolSetting = ref(20);
-const SelectedAdjustmentSetting = ref(0);
-const NotSelectedAdjustmentSetting = ref(0);
-
-function applyDefaults() {
-    Store.Ironclad.model = IroncladSetting.value;
-    Store.Silent.model = SilentSetting.value;
-    Store.Regent.model = RegentSetting.value;
-    Store.Necrobinder.model = NecrobinderSetting.value;
-    Store.Defect.model = DefectSetting.value;
-    Store.Fool.model = FoolSetting.value;
-	Store.SelectedAdjustmentValue = SelectedAdjustmentSetting.value;
-	Store.NotSelectedAdjustmentValue = NotSelectedAdjustmentSetting.value;
+const applyDefaultsToModel = () => {
+    Settings.value.forEach((setting) => {
+        setting.model = setting.default
+    })
 }
 
-function getSettingDefault(defaultSetting: Ref<number, number>, settingName: string)
-{
+const getSettingDefault = (settingName: string)  => {
     const savedValue = parseInt(localStorage.getItem(settingName) || '', 10)
-    if(!isNaN(savedValue))
-    {
-        defaultSetting.value = savedValue;
-    }
+    return savedValue
 }
 
 onMounted(() => {
-    getSettingDefault(IroncladSetting, Characters.ironclad);
-    getSettingDefault(SilentSetting, Characters.silent);
-    getSettingDefault(RegentSetting, Characters.regent);
-    getSettingDefault(NecrobinderSetting, Characters.necrobinder);
-    getSettingDefault(DefectSetting, Characters.defect);
-    getSettingDefault(FoolSetting, Characters.fool);
-    getSettingDefault(SelectedAdjustmentSetting, "Selection Decrement");
-    getSettingDefault(NotSelectedAdjustmentSetting, "Unselected Increment");
-
-    applyDefaults();
+    Settings.value.forEach((setting) => {
+        const defaultValue = getSettingDefault(setting.name)
+        if(!isNaN(defaultValue)) {
+            setting.default = defaultValue
+        }
+    });
+    applyDefaultsToModel();
 })
 
-function closePopover()
-{
+const closePopover = () => {
     const popover = document.getElementById('settings-popover');
     popover?.hidePopover();
 }
-
 </script>
 
 <template>
@@ -65,19 +42,12 @@ function closePopover()
 					</p>
 				</div>
                 <section class="input-grid">
-                    <DefaultValue v-model.number="IroncladSetting" :label="Characters.ironclad"></DefaultValue>
-                    <DefaultValue v-model.number="SilentSetting" :label="Characters.silent"></DefaultValue>
-                    <DefaultValue v-model.number="RegentSetting" :label="Characters.regent"></DefaultValue>
-                    <DefaultValue v-model.number="NecrobinderSetting" :label="Characters.necrobinder"></DefaultValue>
-                    <DefaultValue v-model.number="DefectSetting" :label="Characters.defect"></DefaultValue>
-                    <DefaultValue v-model.number="FoolSetting" :label="Characters.fool"></DefaultValue>
-                    <DefaultValue v-model.number="SelectedAdjustmentSetting" label="Selection Decrement"></DefaultValue>
-                    <DefaultValue v-model.number="NotSelectedAdjustmentSetting" label="Unselected Increment"></DefaultValue>
+                    <DefaultValue v-for="setting in Settings" :key="setting.name" v-model.number="setting.default" :label="setting.name"></DefaultValue>
                 </section>
             </div>
             
             <div class="button-row">
-                <button @click="[applyDefaults(), closePopover()]">Apply</button>
+                <button @click="[applyDefaultsToModel(), closePopover()]">Apply</button>
             </div>
             
         </dialog>
