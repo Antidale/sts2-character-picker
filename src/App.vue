@@ -12,7 +12,7 @@ const selectionHistory = ref<CharacterSelection[]>([])
 const selectedCharacter = ref('')
 let digCount = 0;
 
-function selectCharacter() {
+const selectCharacter = () => {
   const luckyNumber = randomInt();
 
   for(let i = 0; i < CharacterModels.value.length; i++)
@@ -33,7 +33,7 @@ function selectCharacter() {
   updateChances(selectedCharacter.value);
 }
 
-function updateChances(characterName: string) {
+const updateChances = (characterName: string) => {
       CharacterModels.value.forEach(character => {
       if(character.name == characterName) {
         const newValue = Math.max(character.model - Store.SelectedAdjustmentValue.model, 0)
@@ -46,7 +46,7 @@ function updateChances(characterName: string) {
 
 const sumOdds = (acc: number, curr: { model: number }) => acc + curr.model;
 
-function randomInt() {
+const randomInt = () => {
   const overallChance = CharacterModels.value.reduce(sumOdds, 0);
   return Math.floor(Math.random() * overallChance) + 1
 }
