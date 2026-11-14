@@ -11,7 +11,10 @@ const props = defineProps<{
     <section v-if="props.selectionHistory.length > 0">
       <h3 class="center" >Selection History</h3>
       <ul>
-        <!-- Currently doing it this way to show two different ways of handling images in vue -->
+        <!--
+          Currently doing it this way to show two different ways of handling images in vue
+          Compare with how this is done in CharacterWeight.vue, using hte URL type and the assets folder
+        -->
         <li v-for="character in props.selectionHistory" :key="character.id">
           <img :src="`/img/StS2_${character.name}.png`" width="50px"/>
         </li>
