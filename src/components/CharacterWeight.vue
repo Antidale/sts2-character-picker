@@ -9,7 +9,7 @@ const model = defineModel();
 
 const imgUrl = new URL(`../assets/StS2_${props.character}.png`, import.meta.url).href;
 
-function update(e: Event) {
+const update = (e: Event) => {
    model.value = (e.target as HTMLInputElement).value
 }
 </script>

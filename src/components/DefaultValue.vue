@@ -5,7 +5,7 @@ const props = defineProps<{
 
 const model = defineModel();
 
-function update(e: Event) {
+const update = (e: Event) => {
     const eventValue = (e.target as HTMLInputElement).value
     model.value = eventValue
     localStorage.setItem(props.label, eventValue)
